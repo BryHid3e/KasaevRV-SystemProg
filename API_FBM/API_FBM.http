@@ -1,0 +1,6 @@
+@API_FBM_HostAddress = http://localhost:5137
+
+GET {{API_FBM_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

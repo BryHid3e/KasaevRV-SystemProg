@@ -1,0 +1,204 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>API_FBM</name>
+    </assembly>
+    <members>
+        <member name="M:API_FBM.Controllers.UsersController.TestConnection">
+            <summary>
+            Проверка соединения с базой данных
+            </summary>
+            <remarks>
+            Тестовый метод для проверки соединения с Supabase
+            </remarks>
+        </member>
+        <member name="M:API_FBM.Controllers.UsersController.GetAllUsers">
+             <summary>
+             Получить список всех пользователей
+             </summary>
+             <remarks>
+             Возвращает полный список всех пользователей из базы данных
+             
+             Пример запроса:
+            
+                 GET /api/Users
+            
+             </remarks>
+             <returns>Список всех пользователей</returns>
+             <response code="200">Возвращает список пользователей</response>
+             <response code="500">Если произошла внутренняя ошибка сервера</response>
+        </member>
+        <member name="M:API_FBM.Controllers.UsersController.GetUser(System.Int32)">
+             <summary>
+             Получить пользователя по ID
+             </summary>
+             <remarks>
+             Возвращает информацию о конкретном пользователе по его ID
+             
+             Пример запроса:
+            
+                 GET /api/Users/5
+            
+             </remarks>
+             <param name="id">ID пользователя (целое число)</param>
+             <returns>Пользователь с указанным ID</returns>
+             <response code="200">Возвращает данные пользователя</response>
+             <response code="404">Если пользователь не найден</response>
+             <response code="500">Если произошла внутренняя ошибка сервера</response>
+        </member>
+        <member name="M:API_FBM.Controllers.UsersController.CreateUser(API_FBM.Models.CreateUserDto)">
+             <summary>
+             Создать нового пользователя
+             </summary>
+             <remarks>
+             Создает нового пользователя в базе данных
+             
+             Пример запроса:
+            
+                 POST /api/Users
+                 {
+                    "name": "Иван Иванов",
+                    "login": "ivan",
+                    "password": "секретный_пароль",
+                    "age": 30
+                 }
+            
+             </remarks>
+             <param name="userDto">Данные нового пользователя</param>
+             <returns>Созданный пользователь с присвоенным ID</returns>
+             <response code="201">Возвращает созданного пользователя</response>
+             <response code="400">Если данные пользователя некорректны</response>
+             <response code="500">Если произошла внутренняя ошибка сервера</response>
+        </member>
+        <member name="M:API_FBM.Controllers.UsersController.UpdateUser(System.Int32,API_FBM.Models.User)">
+             <summary>
+             Обновить данные пользователя
+             </summary>
+             <remarks>
+             Полностью обновляет данные существующего пользователя
+             
+             Пример запроса:
+            
+                 PUT /api/Users/5
+                 {
+                    "id": 5,
+                    "name": "Иван Петров",
+                    "login": "ivan_petrov",
+                    "password": "новый_пароль",
+                    "age": 35
+                 }
+            
+             Важно: ID в URL должен совпадать с ID в теле запроса
+             </remarks>
+             <param name="id">ID пользователя для обновления</param>
+             <param name="user">Новые данные пользователя</param>
+             <returns>Обновленный пользователь</returns>
+             <response code="200">Возвращает обновленного пользователя</response>
+             <response code="400">Если ID в URL не соответствует ID в теле запроса</response>
+             <response code="404">Если пользователь не найден</response>
+             <response code="500">Если произошла внутренняя ошибка сервера</response>
+        </member>
+        <member name="M:API_FBM.Controllers.UsersController.DeleteUser(System.Int32)">
+             <summary>
+             Удалить пользователя
+             </summary>
+             <remarks>
+             Удаляет пользователя из базы данных по указанному ID
+             
+             Пример запроса:
+            
+                 DELETE /api/Users/5
+            
+             </remarks>
+             <param name="id">ID пользователя для удаления</param>
+             <returns>Сообщение об успешном удалении</returns>
+             <response code="200">Если пользователь успешно удален</response>
+             <response code="404">Если пользователь не найден</response>
+             <response code="500">Если произошла внутренняя ошибка сервера</response>
+        </member>
+        <member name="M:API_FBM.Controllers.UsersController.UpdateUserName(System.Int32,System.String)">
+             <summary>
+             Обновить имя пользователя
+             </summary>
+             <remarks>
+             Обновляет только имя существующего пользователя
+             
+             Пример запроса:
+            
+                 PATCH /api/Users/5/name
+                 "Новое Имя"
+            
+             Тело запроса - строка в кавычках с новым именем
+             </remarks>
+             <param name="id">ID пользователя</param>
+             <param name="name">Новое имя пользователя</param>
+             <returns>Обновленный пользователь</returns>
+             <response code="200">Возвращает пользователя с обновленным именем</response>
+             <response code="404">Если пользователь не найден</response>
+             <response code="500">Если произошла внутренняя ошибка сервера</response>
+        </member>
+        <member name="M:API_FBM.Controllers.UsersController.UpdateUserLogin(System.Int32,System.String)">
+             <summary>
+             Обновить логин пользователя
+             </summary>
+             <remarks>
+             Обновляет только логин существующего пользователя
+             
+             Пример запроса:
+            
+                 PATCH /api/Users/5/login
+                 "new_login"
+            
+             Тело запроса - строка в кавычках с новым логином
+             </remarks>
+             <param name="id">ID пользователя</param>
+             <param name="login">Новый логин пользователя</param>
+             <returns>Обновленный пользователь</returns>
+             <response code="200">Возвращает пользователя с обновленным логином</response>
+             <response code="404">Если пользователь не найден</response>
+             <response code="500">Если произошла внутренняя ошибка сервера</response>
+        </member>
+        <member name="M:API_FBM.Controllers.UsersController.UpdateUserPassword(System.Int32,System.String)">
+             <summary>
+             Обновить пароль пользователя
+             </summary>
+             <remarks>
+             Обновляет только пароль существующего пользователя
+             
+             Пример запроса:
+            
+                 PATCH /api/Users/5/password
+                 "новый_пароль"
+            
+             Тело запроса - строка в кавычках с новым паролем
+             </remarks>
+             <param name="id">ID пользователя</param>
+             <param name="password">Новый пароль пользователя</param>
+             <returns>Обновленный пользователь</returns>
+             <response code="200">Возвращает пользователя с обновленным паролем</response>
+             <response code="404">Если пользователь не найден</response>
+             <response code="500">Если произошла внутренняя ошибка сервера</response>
+        </member>
+        <member name="M:API_FBM.Controllers.UsersController.UpdateUserAge(System.Int32,System.Int32)">
+             <summary>
+             Обновить возраст пользователя
+             </summary>
+             <remarks>
+             Обновляет только возраст существующего пользователя
+             
+             Пример запроса:
+            
+                 PATCH /api/Users/5/age
+                 25
+            
+             Тело запроса - целое число (новый возраст)
+             </remarks>
+             <param name="id">ID пользователя</param>
+             <param name="age">Новый возраст пользователя</param>
+             <returns>Обновленный пользователь</returns>
+             <response code="200">Возвращает пользователя с обновленным возрастом</response>
+             <response code="404">Если пользователь не найден</response>
+             <response code="500">Если произошла внутренняя ошибка сервера</response>
+        </member>
+    </members>
+</doc>
